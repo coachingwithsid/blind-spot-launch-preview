@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Blind Spot · Launch Approval Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FCF9F4;
+    --cream-low: #F4EFE7;
+    --cream-mid: #EEE7DD;
+    --cream-high: #E3D9CC;
+    --charcoal: #1C1C19;
+    --brown: #2D241E;
+    --brown-muted: #685C55;
+    --terra: #9E4127;
+    --terra-deep: #7F2A12;
+    --ghost: rgba(220, 192, 185, 0.18);
+    --green-soft: #6E7F4F;
+    --rust-soft: #B0563B;
+    --gold-soft: #B0832E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--brown);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brown-muted);
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  header.masthead {
+    background: var(--cream);
+    padding: 64px 56px 40px;
+  }
+
+  .masthead-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .masthead h1 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.05;
+    color: var(--charcoal);
+    letter-spacing: -0.015em;
+    max-width: 720px;
+  }
+
+  .masthead h1 .accent { color: var(--terra); }
+
+  .masthead .deck {
+    margin-top: 18px;
+    color: var(--brown);
+    max-width: 640px;
+    font-size: 15.5px;
+  }
+
+  .masthead-meta {
+    text-align: right;
+    color: var(--brown-muted);
+  }
+
+  .masthead-meta .label { display: block; margin-bottom: 6px; }
+  .masthead-meta .value {
+    font-family: 'Newsreader', serif;
+    font-size: 22px;
+    color: var(--charcoal);
+  }
+
+  /* ── ARC RIBBON ─────────────────────────────────── */
+  .arc {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 56px 32px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+  }
+
+  .arc-step {
+    background: var(--cream-low);
+    padding: 22px 24px;
+    position: relative;
+  }
+
+  .arc-step:nth-child(1) { background: var(--cream-low); }
+  .arc-step:nth-child(2) { background: var(--cream-mid); }
+  .arc-step:nth-child(3) { background: var(--cream-low); }
+  .arc-step:nth-child(4) { background: var(--cream-mid); border-left: 3px solid var(--terra); padding-left: 21px; }
+  .arc-step:nth-child(5) { background: var(--cream-low); }
+
+  .arc-step .num {
+    font-family: 'Newsreader', serif;
+    font-size: 14px;
+    color: var(--brown-muted);
+  }
+
+  .arc-step .day {
+    font-family: 'Newsreader', serif;
+    font-size: 22px;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin: 6px 0 4px;
+  }
+
+  .arc-step .arc-label {
+    font-size: 11px;
+    color: var(--terra);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 8px;
+    display: block;
+  }
+
+  .arc-step .arc-format {
+    font-size: 12.5px;
+    color: var(--brown-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ── STATUS BAR ─────────────────────────────────── */
+  .statusbar {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 56px 32px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    background: var(--cream);
+  }
+
+  .stat {
+    background: var(--cream-low);
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat:nth-child(2) { background: var(--cream-mid); }
+  .stat:nth-child(4) { background: var(--cream-mid); }
+
+  .stat .num {
+    font-family: 'Newsreader', serif;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--charcoal);
+  }
+
+  .stat .num.green { color: var(--green-soft); }
+  .stat .num.rust { color: var(--rust-soft); }
+  .stat .num.terra { color: var(--terra); }
+  .stat .num.gold { color: var(--gold-soft); }
+
+  /* ── FILTER BAR ─────────────────────────────────── */
+  .filterbar {
+    background: var(--cream-mid);
+    padding: 24px 56px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .filterbar-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .filterbar .label { color: var(--charcoal); }
+
+  .chip-group { display: flex; gap: 0; flex-wrap: wrap; }
+
+  .chip {
+    background: transparent;
+    border: 0;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brown-muted);
+    cursor: pointer;
+    transition: color 180ms ease, background 180ms ease;
+  }
+
+  .chip:hover { color: var(--charcoal); }
+  .chip.active { background: var(--charcoal); color: var(--cream); }
+
+  .filter-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn {
+    background: linear-gradient(180deg, var(--terra) 0%, var(--terra-deep) 100%);
+    color: var(--cream);
+    border: 0;
+    padding: 12px 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .btn:hover { opacity: 0.92; }
+  .btn:active { transform: translateY(1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--charcoal);
+    box-shadow: inset 0 0 0 1px var(--ghost);
+  }
+  .btn-ghost:hover { background: var(--cream-low); }
+
+  /* ── MAIN ─────────────────────────────────── */
+  main {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 56px 56px 120px;
+  }
+
+  .day-section { margin-bottom: 88px; }
+
+  .day-header {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    align-items: baseline;
+  }
+
+  .day-header .day-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--brown-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .day-header h2 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.15;
+    color: var(--charcoal);
+    letter-spacing: -0.01em;
+  }
+
+  .day-header h2 .accent { color: var(--terra); }
+
+  .day-header .day-tone {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--brown-muted);
+    margin-top: 8px;
+    max-width: 720px;
+  }
+
+  .day-header .day-format {
+    margin-top: 14px;
+    display: inline-block;
+    background: var(--cream-mid);
+    padding: 6px 14px;
+    color: var(--charcoal);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ── POST CARDS ─────────────────────────────────── */
+  .post {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    padding: 32px 0 40px;
+    background: var(--cream);
+    position: relative;
+  }
+
+  .post + .post { border-top: 0; box-shadow: inset 0 1px 0 var(--cream-mid); }
+
+  .post.hidden { display: none; }
+
+  .post-margin {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 6px;
+  }
+
+  .post-margin .post-id {
+    font-family: 'Newsreader', serif;
+    font-size: 24px;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+
+  .post-margin .meta-row {
+    color: var(--brown-muted);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  .platform-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--cream-mid);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    align-self: flex-start;
+  }
+
+  .platform-tag.linkedin { background: var(--cream-mid); }
+  .platform-tag.instagram { background: var(--cream-high); }
+  .platform-tag.twitter { background: var(--cream-low); }
+  .platform-tag.email { background: var(--charcoal); color: var(--cream); }
+
+  .format-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--cream-low);
+    color: var(--terra);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    align-self: flex-start;
+    box-shadow: inset 0 0 0 1px rgba(158, 65, 39, 0.15);
+  }
+
+  .asset-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .asset-tag.existing { background: var(--green-soft); }
+  .asset-tag.photo-coming { background: var(--gold-soft); }
+  .asset-tag.needs-render { background: var(--rust-soft); }
+  .asset-tag.text-only { background: var(--brown-muted); }
+
+  /* ── POST BODY ─────────────────────────────────── */
+  .post-body {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 40px;
+  }
+  .post-body.full { grid-template-columns: 1fr; }
+  .post-body.story { grid-template-columns: 1fr 480px; }
+
+  .post-content { position: relative; }
+
+  .post-content h3 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--charcoal);
+    margin-bottom: 18px;
+    letter-spacing: -0.005em;
+  }
+
+  .copy-block {
+    background: var(--cream-low);
+    padding: 22px 26px;
+    color: var(--brown);
+    font-size: 14.5px;
+    line-height: 1.7;
+    max-height: 240px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 280ms ease;
+  }
+
+  .copy-block::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--cream-low));
+    pointer-events: none;
+  }
+
+  .copy-block.expanded { max-height: 4000px; }
+  .copy-block.expanded::after { display: none; }
+
+  .copy-toggle {
+    background: transparent;
+    border: 0;
+    color: var(--terra);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 12px;
+    padding: 0;
+  }
+
+  .copy-cta {
+    margin-top: 14px;
+    color: var(--brown-muted);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  .copy-cta strong { color: var(--charcoal); font-weight: 500; }
+
+  .notes {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: var(--cream-mid);
+    color: var(--brown);
+    font-size: 13px;
+  }
+
+  .notes .label { display: block; margin-bottom: 4px; color: var(--terra); }
+
+  /* ── IMAGE PANEL ─────────────────────────────────── */
+  .image-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .image-frame {
+    background: var(--cream-mid);
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    cursor: zoom-in;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--cream);
+    transition: transform 240ms ease;
+  }
+
+  .image-frame:hover img { transform: scale(1.015); }
+
+  .image-frame.story { aspect-ratio: 9/16; }
+  .image-frame.square { aspect-ratio: 1/1; }
+
+  .image-frame.placeholder {
+    background: repeating-linear-gradient(45deg, var(--cream-mid) 0, var(--cream-mid) 8px, var(--cream-low) 8px, var(--cream-low) 16px);
+    color: var(--brown-muted);
+    text-align: center;
+    padding: 32px 24px;
+    cursor: default;
+    flex-direction: column;
+  }
+
+  .image-frame.placeholder .ph-icon {
+    font-family: 'Newsreader', serif;
+    font-size: 40px;
+    color: var(--terra);
+    margin-bottom: 8px;
+  }
+
+  .image-frame.placeholder .ph-label {
+    font-family: 'Newsreader', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .image-frame.placeholder .ph-sub {
+    font-size: 12.5px;
+    color: var(--brown);
+    line-height: 1.5;
+    max-width: 280px;
+  }
+
+  .carousel-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .carousel-thumb {
+    aspect-ratio: 4/5;
+    background: var(--cream-mid);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: opacity 180ms ease;
+  }
+
+  .carousel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .carousel-thumb.active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 2px var(--terra);
+  }
+
+  .carousel-thumb:hover { opacity: 0.85; }
+
+  /* Story sequence — 3 vertical frames side by side */
+  .story-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .story-slide {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .story-slide .image-frame { aspect-ratio: 9/16; }
+
+  .story-slide .slide-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--terra);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .story-slide .slide-label {
+    font-family: 'Newsreader', serif;
+    font-size: 13.5px;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+
+  .image-meta {
+    font-size: 11px;
+    color: var(--brown-muted);
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
+  .image-meta strong { color: var(--charcoal); font-weight: 500; }
+
+  .res-warning {
+    background: var(--cream-low);
+    color: var(--brown-muted);
+    padding: 10px 14px;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .res-warning strong {
+    color: var(--terra);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  /* ── ACTIONS ─────────────────────────────────── */
+  .actions {
+    margin-top: 22px;
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .action-btn {
+    flex: 1;
+    min-width: 0;
+    background: var(--cream-low);
+    border: 0;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown);
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .action-btn + .action-btn { margin-left: 1px; }
+  .action-btn:hover { background: var(--cream-mid); color: var(--charcoal); }
+
+  .action-btn.active.approve { background: var(--green-soft); color: var(--cream); }
+  .action-btn.active.reshoot-image { background: var(--rust-soft); color: var(--cream); }
+  .action-btn.active.rewrite { background: var(--terra); color: var(--cream); }
+  .action-btn.active.regenerate { background: var(--terra-deep); color: var(--cream); }
+
+  .comment-row { margin-top: 14px; }
+
+  .comment-row textarea {
+    width: 100%;
+    background: var(--cream-low);
+    border: 0;
+    border-bottom: 2px solid transparent;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--brown);
+    resize: vertical;
+    min-height: 56px;
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+
+  .comment-row textarea:focus {
+    outline: 0;
+    border-bottom-color: var(--terra);
+    background: var(--cream-mid);
+  }
+
+  .comment-row textarea::placeholder { color: var(--brown-muted); }
+
+  .status-ribbon {
+    position: absolute;
+    top: 0; right: 0;
+    padding: 4px 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream);
+    z-index: 2;
+  }
+
+  .status-ribbon.approved { background: var(--green-soft); }
+  .status-ribbon.reshoot { background: var(--rust-soft); }
+  .status-ribbon.rewrite { background: var(--terra); }
+  .status-ribbon.regenerate { background: var(--terra-deep); }
+
+  /* ── LIGHTBOX ─────────────────────────────────── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 28, 25, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 48px;
+    cursor: zoom-out;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 88vh;
+    object-fit: contain;
+  }
+
+  .lightbox .lb-close {
+    position: absolute;
+    top: 24px; right: 32px;
+    background: transparent;
+    border: 0;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .post-body { grid-template-columns: 1fr; }
+    .post { grid-template-columns: 1fr; gap: 24px; }
+    .day-header { grid-template-columns: 1fr; gap: 12px; }
+    .post-margin { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .arc { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 720px) {
+    header.masthead { padding: 40px 24px 32px; }
+    .masthead-inner { grid-template-columns: 1fr; }
+    .masthead h1 { font-size: 38px; }
+    .arc { grid-template-columns: 1fr; padding: 0 24px 24px; }
+    .statusbar { grid-template-columns: repeat(2, 1fr); padding: 0 24px 24px; }
+    .filterbar { padding: 16px 24px; }
+    main { padding: 32px 24px 80px; }
+    .carousel-strip { grid-template-columns: repeat(4, 1fr); }
+    .story-strip { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    .filterbar, .actions, .comment-row, .filter-actions { display: none; }
+    .post { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <span class="label">The Blind Spot · Launch Approval Room</span>
+      <h1 style="margin-top:14px;">
+        Why first.<br/>
+        Then what.<br/>
+        <span class="accent">Then it goes live.</span>
+      </h1>
+      <p class="deck">
+        Re-planned for the new arc. Five days. No reels. Each day has its own format so no two feed posts look alike back-to-back. Stories run as three-slide sequences with a hook, context, and a link. Approve copy and visuals here, mark anything that needs a new render, leave notes for the team.
+      </p>
+    </div>
+    <div class="masthead-meta">
+      <span class="label">Campaign</span>
+      <div class="value">May 9 — May 13</div>
+      <span class="label" style="margin-top:18px;">Launch</span>
+      <div class="value">Tue · May 12 · 7am</div>
+    </div>
+  </div>
+</header>
+
+<div class="arc">
+  <div class="arc-step">
+    <div class="num">Day 01</div>
+    <div class="day">Sat May 9</div>
+    <span class="arc-label">The why</span>
+    <div class="arc-format">Personal photo · Why I'm starting this</div>
+  </div>
+  <div class="arc-step">
+    <div class="num">Day 02</div>
+    <div class="day">Sun May 10</div>
+    <span class="arc-label">The what</span>
+    <div class="arc-format">Photo + text · What a blind spot really is</div>
+  </div>
+  <div class="arc-step">
+    <div class="num">Day 03</div>
+    <div class="day">Mon May 11</div>
+    <span class="arc-label">The teaser</span>
+    <div class="arc-format">Solid color text · One pulled line</div>
+  </div>
+  <div class="arc-step">
+    <div class="num">Launch</div>
+    <div class="day">Tue May 12</div>
+    <span class="arc-label">It's live</span>
+    <div class="arc-format">7-slide carousel + reminders</div>
+  </div>
+  <div class="arc-step">
+    <div class="num">Day 05</div>
+    <div class="day">Wed May 13</div>
+    <span class="arc-label">Post-launch</span>
+    <div class="arc-format">Pulled quote + late invite</div>
+  </div>
+</div>
+
+<div class="statusbar">
+  <div class="stat"><span class="label">Total posts</span><span class="num" id="stat-total">—</span></div>
+  <div class="stat"><span class="label">Approved</span><span class="num green" id="stat-approved">0</span></div>
+  <div class="stat"><span class="label">Needs new render</span><span class="num rust" id="stat-reshoot">0</span></div>
+  <div class="stat"><span class="label">Copy rewrite</span><span class="num terra" id="stat-rewrite">0</span></div>
+  <div class="stat"><span class="label">Pending</span><span class="num" id="stat-pending">0</span></div>
+</div>
+
+<div class="filterbar">
+  <div class="filterbar-inner">
+    <span class="label">Filter</span>
+    <div class="chip-group" data-filter="day">
+      <button class="chip active" data-value="all">All days</button>
+      <button class="chip" data-value="sat">Sat · Why</button>
+      <button class="chip" data-value="sun">Sun · What</button>
+      <button class="chip" data-value="mon">Mon · Teaser</button>
+      <button class="chip" data-value="tue">Tue · Launch</button>
+      <button class="chip" data-value="wed">Wed · Post</button>
+    </div>
+    <div class="chip-group" data-filter="platform">
+      <button class="chip active" data-value="all">All platforms</button>
+      <button class="chip" data-value="Instagram">Instagram</button>
+      <button class="chip" data-value="LinkedIn">LinkedIn</button>
+      <button class="chip" data-value="Twitter / X">X</button>
+      <button class="chip" data-value="IG Stories">Stories</button>
+      <button class="chip" data-value="Email">Email</button>
+    </div>
+    <div class="chip-group" data-filter="status">
+      <button class="chip active" data-value="all">All status</button>
+      <button class="chip" data-value="pending">Pending</button>
+      <button class="chip" data-value="approved">Approved</button>
+      <button class="chip" data-value="reshoot">Needs new render</button>
+      <button class="chip" data-value="rewrite">Needs rewrite</button>
+    </div>
+    <div class="filter-actions">
+      <button class="btn btn-ghost" id="btn-reset">Reset all</button>
+      <button class="btn" id="btn-export">Export approvals</button>
+    </div>
+  </div>
+</div>
+
+<main id="main"></main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close">Close · Esc</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+
+<script>
+const RENDERS_DIR = "launch-campaign-renders/";
+function imgSrc(file) { return file.includes('/') ? file : RENDERS_DIR + file; }
+
+const DAYS = [
+  { key: 'sat', date: 'Sat May 9',  num: 'Day 01', title: 'The why',         accent: 'Why I\'m starting this.', tone: 'Personal launch. Sid in his own voice — what he\'s seen for 12 years, what made him do this. The most honest post in the campaign.', format: 'IG · pure photo' },
+  { key: 'sun', date: 'Sun May 10', num: 'Day 02', title: 'The what',         accent: 'What a blind spot really is.', tone: 'Educational. Plain language. A blind spot is a function of position, not intelligence. Five places they live.', format: 'IG · photo + text overlay' },
+  { key: 'mon', date: 'Mon May 11', num: 'Day 03', title: 'The teaser',       accent: 'One pulled line.', tone: 'Single declarative beat. Pre-launch declaration on a solid block. Day before the issue lands.', format: 'IG · solid color text' },
+  { key: 'tue', date: 'Tue May 12', num: 'Launch', title: 'It\'s live.',      accent: '', tone: 'The newsletter speaks for itself. Carousel announcement, low-pressure reminders, story link sticker.', format: 'IG · 7-slide carousel' },
+  { key: 'wed', date: 'Wed May 13', num: 'Day 05', title: 'Post-launch',      accent: 'For the founders just seeing this.', tone: 'Light wave. The first 48 hours after launch matter. Pulled quote, one LinkedIn invite for people who missed launch day.', format: 'IG · pulled quote square' },
+];
+
+const POSTS = [
+
+  /* ─────────── DAY 1 · SAT MAY 9 · THE WHY ─────────── */
+  {
+    id: '1.1', day: 'sat', time: '10:00 AM', platform: 'Instagram', type: 'Single post · personal photo',
+    igFormat: 'Pure photo',
+    assetStatus: 'existing',
+    hook: "Why I'm starting a newsletter.",
+    copy: `Three years ago I sat across from a founder doing $4M with 18 people. He told me his team couldn't make a decision without him.
+
+I asked him to walk me through a normal week.
+
+His team brought him questions they already knew the answer to. He sat in meetings just to "stay in the loop." He responded to Slack within four minutes. The reasoning behind most company decisions lived in his head and was never written down.
+
+None of that looked like a problem from where he was standing. It looked like a founder who was fast, present, and deeply involved.
+
+He couldn't see what he was actually doing. He was training his team to stop thinking.
+
+That conversation has happened a hundred times in my work. Different founder, same shape. There are a handful of these patterns that quietly cost scaling founders $1M+ a year. Most of them are invisible from the inside.
+
+I'm starting a newsletter for founders who want to see them.
+
+It's called The Blind Spot. Every Tuesday. One pattern, broken down clearly, with one thing to do about it before Monday. Five-minute read.
+
+First edition Tuesday.
+
+Link in bio.`,
+    cta: 'Link in bio → coachsid.com/newsletter',
+    notes: 'BRAND NOTE — Brand Book v3.1 (page 24) flags Mindvalley blue/purple stage backdrops as a no-go because they fight the warm earthy palette. Sid greenlit this shot anyway because the moment is right. Two options to ride out the conflict: (1) post as-is and treat as the human-first launch moment, (2) crop tighter to Sid\'s face so the blue background recedes. Either is a deliberate choice — not a brand miss.',
+    images: [{ file: 'launch-approval-assets/sid-day1-photo.jpg', label: 'Sid · on stage · launch photo', external: true }],
+    aspect: 'portrait'
+  },
+  {
+    id: '1.2', day: 'sat', time: '10:00 AM', platform: 'LinkedIn', type: 'Long-form post',
+    assetStatus: 'text-only',
+    hook: 'A year of internal notes.',
+    copy: `For a year I've been writing internal notes after sessions with founders. Patterns that kept showing up. Things I'd find myself saying in different rooms to different people running different businesses.
+
+A founder doing $4M who told me his team couldn't make a decision without him. A second-gen CEO who hired three senior leaders in 18 months and lost two. A founder who said the business would stall if she stepped away for two weeks, and was proud of that.
+
+Different industries. Different cities. Same handful of patterns underneath.
+
+These patterns are expensive. The scaling founders I work with lose $1M+ a year to blind spots they cannot see from inside their business. Wrong hires. Slow decisions. Problems that keep coming back because the hidden pattern was never visible.
+
+So I'm doing something with the notes.
+
+I'm starting a weekly newsletter for scaling founders called The Blind Spot. Every Tuesday I'll break down one of these patterns clearly, in plain language, with one thing you can do about it before Monday. Five-minute read.
+
+The first edition goes out Tuesday. It's about how high-trust founders accidentally train their teams to stop thinking. Most founders I sit with are doing all five things in it.
+
+If you want it: coachsid.com/newsletter`,
+    cta: 'URL in body → coachsid.com/newsletter',
+    notes: 'Memo voice. No hooks that scream stop scrolling. Posts roughly the same time as the IG photo so they reinforce each other.',
+    textOnly: true
+  },
+  {
+    id: '1.3', day: 'sat', time: '12:00 PM', platform: 'Twitter / X', type: 'Short tweet',
+    assetStatus: 'text-only',
+    hook: "You're standing inside your own blind spot.",
+    copy: `You're standing inside your own blind spot.
+
+Every scaling founder has a few. Patterns you can't see from where you're standing. Most cost real money.
+
+New newsletter. One blind spot a week. Tuesdays.
+
+coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    notes: 'Sets up the why on X.',
+    textOnly: true
+  },
+  {
+    id: '1.4', day: 'sat', time: '6:00 PM', platform: 'Twitter / X', type: 'Short tweet',
+    assetStatus: 'text-only',
+    hook: '12+ years of patterns.',
+    copy: `12+ years of sitting across from scaling founders. Different industries, same handful of patterns.
+
+Starting Tuesday, I'm writing about one of those patterns each week.
+
+It's called The Blind Spot. coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    notes: 'Evening reinforcement. Closes Day 1 on X.',
+    textOnly: true
+  },
+  {
+    id: '1.5', day: 'sat', time: '8:00 AM', platform: 'IG Stories', type: 'Story sequence · 3 slides',
+    assetStatus: 'needs-render',
+    hook: 'Why I\'m writing this.',
+    copy: `Three-slide sequence. Each slide carries one beat. The third slide hands off to the link.`,
+    cta: 'Link sticker on Slide 3',
+    notes: 'Editorial cream + charcoal type. Newsreader headlines. Inter labels in margin.',
+    storySlides: [
+      { num: 'Slide 1', label: 'The hook', body: 'Why I\'m writing this newsletter.' },
+      { num: 'Slide 2', label: 'The context', body: '12 years across founders\' tables. Different rooms, same handful of patterns. Most cost $1M+ a year.' },
+      { num: 'Slide 3', label: 'The CTA', body: 'First edition Tuesday. Link sticker → coachsid.com/newsletter' }
+    ]
+  },
+
+  /* ─────────── DAY 2 · SUN MAY 10 · THE WHAT ─────────── */
+  {
+    id: '2.1', day: 'sun', time: '10:00 AM', platform: 'Instagram', type: 'Single post · photo + text overlay',
+    igFormat: 'Photo + text',
+    assetStatus: 'needs-render',
+    hook: "What is a founder's blind spot?",
+    copy: `A blind spot is a function of position, not intelligence.
+
+You can't see what's behind you while you're driving. Same thing happens inside a business. From in there, things just look like "how things are."
+
+Every founder has them. Whether they know it or not.
+
+They live in five places: Vision · Decisions · Mindset · Systems · People.
+
+The Blind Spot is a Tuesday-morning perspective from outside the room. One pattern at a time.
+
+First edition Tuesday. coachsid.com/newsletter`,
+    cta: 'Link in bio',
+    notes: 'Single editorial frame — not a 7-slide carousel. Photo of Sid at a whiteboard / notebook / advisory environment with a single line of Newsreader type beside or below the image. The caption does the rest.',
+    needsCreative: true,
+    creativeNote: 'New single-frame educational post. Photo + Newsreader type "What is a founder\'s blind spot?" Cream or warm-brown surface. 1080×1350.'
+  },
+  {
+    id: '2.2', day: 'sun', time: '10:00 AM', platform: 'LinkedIn', type: 'Long-form post',
+    assetStatus: 'text-only',
+    hook: 'Three signs your business has hit your ceiling, not its ceiling.',
+    copy: `Three signs your business has hit your ceiling, not its ceiling.
+
+One. Your team brings you questions they already know the answer to. They want permission. You give it in thirty seconds. Everyone leaves the meeting feeling productive. Nobody got better at making the call themselves.
+
+Two. The same problems keep coming back, just wearing different clothes. New quarter. New names. Same shape. That isn't bad luck. That's a blind spot doing its job.
+
+Three. Your best senior hire left within 14 months. You told yourself it was a culture fit issue. It probably wasn't. People who want real ownership leave when the system can't give it to them, no matter how much you say you want to.
+
+Most scaling founders I work with are running into one of these three. None of them look like a problem from inside the business. They look like things that are just true.
+
+That's the work I do. And starting Tuesday, it's also the work of a newsletter I'm putting out called The Blind Spot. One pattern a week, broken down. Five-minute read. Free.
+
+If you want in: coachsid.com/newsletter`,
+    cta: 'URL in body',
+    notes: 'Day 2 · Help people understand what they\'re signing up for.',
+    textOnly: true
+  },
+  {
+    id: '2.3', day: 'sun', time: '2:00 PM', platform: 'Twitter / X', type: 'Short tweet',
+    assetStatus: 'text-only',
+    hook: 'If your team brings you decisions they already know the answer to',
+    copy: `If your team brings you decisions they already know the answer to, you don't have a team problem.
+
+You have a pattern problem.
+
+I'm writing about patterns like this every Tuesday in a new newsletter called The Blind Spot. Link below.
+
+coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    textOnly: true
+  },
+  {
+    id: '2.4', day: 'sun', time: '8:00 AM', platform: 'IG Stories', type: 'Story sequence · 3 slides',
+    assetStatus: 'needs-render',
+    hook: 'What is a blind spot?',
+    copy: `Three-slide sequence. Define the term. Show the five places. Hand off to the link.`,
+    cta: 'Link sticker on Slide 3',
+    notes: 'Cream surface for slides 1-2, terracotta or charcoal block for slide 3 to break the rhythm.',
+    storySlides: [
+      { num: 'Slide 1', label: 'The definition', body: 'A blind spot is a function of position, not intelligence.' },
+      { num: 'Slide 2', label: 'The five places', body: 'Vision · Decisions · Mindset · Systems · People. Most founders have one running silently.' },
+      { num: 'Slide 3', label: 'The CTA', body: 'First edition Tuesday — names one of them clearly. Link sticker.' }
+    ]
+  },
+
+  /* ─────────── DAY 3 · MON MAY 11 · THE TEASER ─────────── */
+  {
+    id: '3.1', day: 'mon', time: '10:00 AM', platform: 'Instagram', type: 'Single post · solid color text',
+    igFormat: 'Solid color text',
+    assetStatus: 'needs-render',
+    hook: 'Staying in the loop is how you become the loop.',
+    copy: `Pulled from tomorrow's edition.
+
+If you're attending meetings just to be present, you're not informed. You're a bottleneck.
+
+First edition tomorrow at 7am. coachsid.com/newsletter`,
+    cta: 'Link in bio',
+    notes: 'Solid color block — terracotta or charcoal. Cream Newsreader headline. No photo. Single declarative beat. Breaks the photo rhythm of Day 1 and Day 2.',
+    needsCreative: true,
+    creativeNote: 'New solid-color text post. 1080×1350. Terracotta #9E4127 or charcoal #1C1C19 background. Cream Newsreader headline + small Inter label "FROM ISSUE 01 · TUESDAY".'
+  },
+  {
+    id: '3.2', day: 'mon', time: '10:00 AM', platform: 'LinkedIn', type: 'Direct invitation',
+    assetStatus: 'text-only',
+    hook: "For 12+ years I've sat across from founders.",
+    copy: `For 12+ years I've sat across from founders running $1M to $20M businesses, helping them see what they couldn't see from inside the room.
+
+Starting tomorrow, some of that work goes out as a newsletter.
+
+It's called The Blind Spot.
+
+What it is:
+
+One blind spot a week, named clearly. The kind that quietly costs founders months of momentum and serious money. Wrong hires. Decision bottlenecks. Patterns that keep repeating. Things you can't see while you're inside the system.
+
+One thing to do about it before Monday. Not theory. A specific move you can make this week.
+
+A five-minute read. Built for founders who don't have time for fluff and don't want another 2,000-word essay that says nothing useful.
+
+If that sounds like the right kind of input for your week, the link is in the comments.
+
+First edition Tuesday.`,
+    cta: 'Link in first comment: https://coachsid.com/newsletter',
+    notes: 'Last invite before launch.',
+    textOnly: true
+  },
+  {
+    id: '3.3', day: 'mon', time: '4:00 PM', platform: 'Twitter / X', type: 'Short tweet',
+    assetStatus: 'text-only',
+    hook: "Same fires, different quarter, isn't bad luck.",
+    copy: `The same fires, different quarter, isn't bad luck. It's a blind spot doing its job.
+
+Newsletter for founders who want to stop running into the same wall: coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    textOnly: true
+  },
+  {
+    id: '3.4', day: 'mon', time: '8:00 AM', platform: 'IG Stories', type: 'Story sequence · 3 slides',
+    assetStatus: 'needs-render',
+    hook: '1 day to go.',
+    copy: `Three-slide sequence. Build the anticipation. Show what tomorrow's issue is about. Drop the countdown.`,
+    cta: 'Countdown sticker + link on Slide 3',
+    notes: 'Slide 3 carries the IG countdown sticker pinned to tomorrow 7am.',
+    storySlides: [
+      { num: 'Slide 1', label: 'The mark', body: 'One day until the first edition.' },
+      { num: 'Slide 2', label: 'The topic', body: 'Tomorrow\'s blind spot: the 5 things you\'re doing that train your team to stop thinking.' },
+      { num: 'Slide 3', label: 'The countdown', body: 'IG countdown sticker → tomorrow 7am. Link sticker → coachsid.com/newsletter' }
+    ]
+  },
+
+  /* ─────────── DAY 4 · TUE MAY 12 · LAUNCH ─────────── */
+  {
+    id: '4.1', day: 'tue', time: '7:00 AM', platform: 'Email', type: 'Newsletter send · Issue 01',
+    assetStatus: 'text-only',
+    hook: "5 ways you're accidentally training your team to stop thinking",
+    copy: `Issue #1 of The Blind Spot. Full edition lives in The_Blind_Spot_Issue_1_Final.md.
+
+Sent via the ESP at 7am. The moment everything else points at.`,
+    cta: '—',
+    notes: 'Schedule the send the day before. Re-test from address, links, and unsubscribe footer.',
+    textOnly: true
+  },
+  {
+    id: '4.2', day: 'tue', time: '8:00 AM', platform: 'Instagram', type: 'Carousel · 7 slides',
+    igFormat: '7-slide carousel',
+    assetStatus: 'needs-render',
+    hook: "It's live.",
+    copy: `It's live. Issue 01 — 5 ways you're accidentally training your team to stop thinking.
+
+Most business newsletters tell you what to do next. The Blind Spot shows you what's actually in the way.
+
+In your inbox now. Not subscribed? Link in bio.
+
+Forward it to a founder who needs it.
+
+coachsid.com/newsletter`,
+    cta: 'Link in bio',
+    notes: 'The big asset moment of the campaign. Seven editorial slides building the announcement: hook → definition → the cost → $1M+ stat → photo adjacent → masthead → CTA. Final slide says "It\'s live · Issue 01" with the URL.',
+    needsCreative: true,
+    creativeNote: 'New 7-slide announcement carousel. 1080×1350. Cream + charcoal + a single terracotta accent on the CTA slide. Newsreader headlines. One slide pairs Sid\'s photo with a quote.'
+  },
+  {
+    id: '4.3', day: 'tue', time: '10:00 AM', platform: 'LinkedIn', type: 'Post-launch invite',
+    assetStatus: 'text-only',
+    hook: 'The first edition is live.',
+    copy: `The first edition of The Blind Spot is live.
+
+It's about something I see in 8 out of 10 founders I work with between $1M and $10M: how high-trust leaders accidentally train their teams to stop thinking.
+
+Five small behaviours. Most founders are doing all five.
+
+If you've ever sat across from a senior hire who said the words "I don't have ownership here" and you weren't sure how that happened, this issue names it.
+
+Read it (and subscribe for next Tuesday): https://coachsid.com/newsletter
+
+If a founder you respect should be reading it, send it their way.`,
+    cta: 'https://coachsid.com/newsletter',
+    notes: 'Anchor LinkedIn post for launch day.',
+    textOnly: true
+  },
+  {
+    id: '4.4', day: 'tue', time: '2:00 PM', platform: 'LinkedIn', type: 'Re-share / fresh post',
+    assetStatus: 'text-only',
+    hook: "It's live.",
+    copy: `Re-share the morning post with a one-line update: "First edition just went out — early reactions in the comments." Or post a fresh "It's live" note linking back.
+
+Goal: bring the audience that scrolled past in the morning back to the issue in the afternoon.`,
+    cta: 'https://coachsid.com/newsletter',
+    notes: 'Pick one — re-share or fresh draft. Don\'t do both.',
+    textOnly: true
+  },
+  {
+    id: '4.5', day: 'tue', time: '6:00 AM', platform: 'Twitter / X', type: 'Morning launch tweet',
+    assetStatus: 'text-only',
+    hook: 'The first edition of The Blind Spot is in your inbox.',
+    copy: `The first edition of The Blind Spot is in your inbox.
+
+If you're not subscribed: coachsid.com/newsletter
+
+This week's blind spot: every correct decision you make yourself is training your team to stop thinking.`,
+    cta: 'coachsid.com/newsletter',
+    notes: 'First signal of launch day.',
+    textOnly: true
+  },
+  {
+    id: '4.6', day: 'tue', time: '11:00 AM', platform: 'Twitter / X', type: 'Mid-morning reminder',
+    assetStatus: 'text-only',
+    hook: "A founder asked me last month why his team couldn't make a single decision without him",
+    copy: `A founder asked me last month why his team couldn't make a single decision without him.
+
+I asked him how many decisions crossed his desk last week that didn't actually need him.
+
+He went quiet. Then said: "Most of them."
+
+That's today's edition of The Blind Spot. coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    textOnly: true
+  },
+  {
+    id: '4.7', day: 'tue', time: '3:00 PM', platform: 'Twitter / X', type: 'Afternoon reminder',
+    assetStatus: 'text-only',
+    hook: 'For the founders just seeing this',
+    copy: `For the founders just seeing this:
+
+The first edition of my new newsletter The Blind Spot went out this morning.
+
+Subject: 5 ways you are accidentally training your team to not think.
+
+Read it here: coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    textOnly: true
+  },
+  {
+    id: '4.8', day: 'tue', time: '8:00 AM', platform: 'IG Stories', type: 'Story sequence · 3 slides',
+    assetStatus: 'needs-render',
+    hook: "It's live.",
+    copy: `Three-slide sequence on launch morning. The "live" beat, the subject line tease, then the link.`,
+    cta: 'Link sticker on Slide 3',
+    notes: 'Slide 3 carries the link sticker direct to the issue.',
+    storySlides: [
+      { num: 'Slide 1', label: 'It\'s live', body: 'The first edition is in your inbox.' },
+      { num: 'Slide 2', label: 'The subject', body: '5 ways you\'re accidentally training your team to not think. Number 3 is the one nobody sees.' },
+      { num: 'Slide 3', label: 'Read it · forward it', body: 'Link sticker → read the issue. Send it to a founder who needs it.' }
+    ]
+  },
+
+  /* ─────────── DAY 5 · WED MAY 13 · POST-LAUNCH ─────────── */
+  {
+    id: '5.1', day: 'wed', time: '12:00 PM', platform: 'Instagram', type: 'Single post · pulled quote square',
+    igFormat: 'Solid quote · square',
+    assetStatus: 'needs-render',
+    hook: 'Staying in the loop is how you become the loop.',
+    copy: `From Issue 01.
+
+If you missed yesterday: coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    notes: 'Editorial pulled-quote square. Warm brown #2D241E background, cream type. Late-night-letter mode. Newsreader headline + small Inter label "FROM ISSUE 01".',
+    needsCreative: true,
+    creativeNote: 'New solid-color square. 1080×1080. Warm brown #2D241E background, cream Newsreader pulled-quote, small label.'
+  },
+  {
+    id: '5.2', day: 'wed', time: '11:00 AM', platform: 'LinkedIn', type: 'Late invite',
+    assetStatus: 'text-only',
+    hook: "Yesterday's edition was about something almost every scaling founder is doing without realising it.",
+    copy: `Yesterday's edition of The Blind Spot was about something almost every scaling founder is doing without realising it.
+
+If your team brings you a decision and you give the answer in thirty seconds, that feels like leadership. To them, it's a signal. They learn not to commit to a call they could have made on their own.
+
+Do this fifty times a month and your team starts treating you like a search engine. They stop building judgment because yours is always available.
+
+Full edition is up. coachsid.com/newsletter`,
+    cta: 'coachsid.com/newsletter',
+    notes: 'For people who missed launch day. The first 48 hours matter.',
+    textOnly: true
+  },
+
+];
+
+/* ──────────── STATE ──────────── */
+
+const STORAGE_KEY = 'blindspot_launch_approvals_v2';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch (e) { return {}; }
+}
+
+function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+let state = loadState();
+let filters = { day: 'all', platform: 'all', status: 'all' };
+
+function getPostState(id) {
+  return state[id] || { copyStatus: 'pending', imageStatus: 'pending', comment: '' };
+}
+
+function setPostState(id, patch) {
+  state[id] = Object.assign({}, getPostState(id), patch);
+  saveState(state);
+}
+
+function setPostStateNoRender(id, patch) {
+  state[id] = Object.assign({}, getPostState(id), patch);
+  saveState(state);
+}
+
+function overallStatus(id, post) {
+  const s = getPostState(id);
+  const hasImage = post.images && post.images.length > 0;
+  const hasStorySlides = post.storySlides && post.storySlides.length > 0;
+  const photoComing = !!post.photoComing;
+  const needsCreative = !!post.needsCreative || hasStorySlides || photoComing;
+
+  if (post.textOnly) {
+    if (s.copyStatus === 'rewrite')  return 'rewrite';
+    if (s.copyStatus === 'approved') return 'approved';
+    return 'pending';
+  }
+
+  if (hasImage) {
+    if (s.imageStatus === 'reshoot-image') return 'reshoot';
+    if (s.copyStatus  === 'rewrite')        return 'rewrite';
+    if (s.copyStatus  === 'approved' && s.imageStatus === 'approved') return 'approved';
+    return 'pending';
+  }
+
+  if (needsCreative) {
+    if (s.imageStatus === 'regenerate') return 'regenerate';
+    if (s.copyStatus  === 'rewrite')    return 'rewrite';
+    if (s.copyStatus  === 'approved' && s.imageStatus === 'approved-creative') return 'approved';
+    return 'pending';
+  }
+
+  return 'pending';
+}
+
+/* ──────────── RENDER ──────────── */
+
+function escape(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function platformSlug(p) {
+  const x = p.toLowerCase();
+  if (x.includes('linkedin')) return 'linkedin';
+  if (x.includes('twitter')) return 'twitter';
+  if (x.includes('email')) return 'email';
+  return 'instagram';
+}
+
+function assetTagText(post) {
+  if (post.textOnly)         return ['text-only', 'Text only'];
+  if (post.assetStatus === 'existing') return ['existing', 'Existing render'];
+  if (post.assetStatus === 'photo-coming') return ['photo-coming', 'Photo from Sid'];
+  if (post.assetStatus === 'needs-render') return ['needs-render', 'Needs new render'];
+  return ['', ''];
+}
+
+function renderPost(post) {
+  const s = getPostState(post.id);
+  const hasImage = post.images && post.images.length > 0;
+  const hasStorySlides = post.storySlides && post.storySlides.length > 0;
+  const isCarousel = hasImage && post.images.length > 1;
+  const photoComing = !!post.photoComing;
+  const needsRender = !!post.needsCreative || hasStorySlides;
+
+  const aspectClass = post.aspect === 'story' ? 'story'
+                    : post.aspect === 'square' ? 'square'
+                    : '';
+
+  const pSlug = platformSlug(post.platform);
+  const [assetClass, assetLabel] = assetTagText(post);
+
+  /* ── IMAGE PANEL ── */
+  let imagePanel = '';
+
+  if (hasImage) {
+    const main = post.images[0];
+    const carouselStrip = isCarousel ? `
+      <div class="carousel-strip">
+        ${post.images.map((img, i) => `
+          <div class="carousel-thumb ${i === 0 ? 'active' : ''}" data-post="${post.id}" data-index="${i}">
+            <img src="${imgSrc(img.file)}" alt="${escape(img.label)}" loading="lazy" />
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    imagePanel = `
+      <div class="image-panel">
+        <div class="image-frame ${aspectClass}" data-lightbox="${imgSrc(main.file)}">
+          <img id="main-img-${post.id}" src="${imgSrc(main.file)}" alt="${escape(main.label)}" loading="lazy" />
+        </div>
+        ${carouselStrip}
+        <div class="image-meta">
+          <strong id="main-img-label-${post.id}">${escape(main.label)}</strong><br/>
+          ${isCarousel ? `Carousel · ${post.images.length} slides · 1080×1350` : (post.aspect === 'story' ? 'Story · 1080×1920' : post.aspect === 'square' ? 'Square · 1080×1080' : 'Portrait · 1080×1350')}
+        </div>
+        <div class="res-warning">
+          <strong>Preview only</strong>
+          Low-resolution render. Final high-res files produced after approval.
+        </div>
+      </div>
+    `;
+  } else if (photoComing) {
+    imagePanel = `
+      <div class="image-panel">
+        <div class="image-frame placeholder" style="aspect-ratio:4/5;">
+          <div>
+            <div class="ph-icon">⌖</div>
+            <div class="ph-label">Photo coming from Sid</div>
+            <div class="ph-sub">${escape(post.photoBrief || '')}</div>
+          </div>
+        </div>
+        <div class="image-meta">
+          <strong>Day 1 personal photo</strong><br/>
+          Sid will drop in a real photo from his library — the campaign opens with his face, not a designed render.
+        </div>
+      </div>
+    `;
+  } else if (hasStorySlides) {
+    imagePanel = `
+      <div class="story-strip">
+        ${post.storySlides.map((slide, i) => {
+          const refSrc = slide.refImage ? `<img src="${RENDERS_DIR}${slide.refImage}" alt="${escape(slide.label)}" loading="lazy" style="opacity:0.55;" />` : '';
+          return `
+            <div class="story-slide">
+              <div class="image-frame story placeholder">
+                ${refSrc || `<div><div class="ph-icon">⌖</div><div class="ph-label" style="font-size:14px;">${escape(slide.label)}</div></div>`}
+              </div>
+              <div class="slide-num">${escape(slide.num)} · ${escape(slide.label)}</div>
+              <div class="slide-label">${escape(slide.body)}</div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  } else if (post.needsCreative) {
+    imagePanel = `
+      <div class="image-panel">
+        <div class="image-frame placeholder" style="aspect-ratio:4/5;">
+          <div>
+            <div class="ph-icon">⌖</div>
+            <div class="ph-label">Needs new render</div>
+            <div class="ph-sub">${escape(post.creativeNote || '')}</div>
+          </div>
+        </div>
+        <div class="image-meta"><strong>No render yet</strong> · Approve the brief or request a different direction.</div>
+      </div>
+    `;
+  }
+
+  /* ── ACTIONS ── */
+  let actions = '';
+  if (post.textOnly) {
+    actions = `
+      <button class="action-btn approve ${s.copyStatus === 'approved' ? 'active' : ''}" data-action="approve-copy" data-post="${post.id}">Approve copy</button>
+      <button class="action-btn rewrite ${s.copyStatus === 'rewrite' ? 'active' : ''}" data-action="rewrite-copy" data-post="${post.id}">Request rewrite</button>
+    `;
+  } else if (hasImage) {
+    actions = `
+      <button class="action-btn approve ${s.copyStatus === 'approved' ? 'active' : ''}" data-action="approve-copy" data-post="${post.id}">Approve copy</button>
+      <button class="action-btn rewrite ${s.copyStatus === 'rewrite' ? 'active' : ''}" data-action="rewrite-copy" data-post="${post.id}">Rewrite copy</button>
+      <button class="action-btn approve ${s.imageStatus === 'approved' ? 'active' : ''}" data-action="approve-image" data-post="${post.id}">Approve image</button>
+      <button class="action-btn reshoot-image ${s.imageStatus === 'reshoot-image' ? 'active' : ''}" data-action="new-image" data-post="${post.id}">New image</button>
+    `;
+  } else {
+    // photo-coming OR needs-creative OR story sequence
+    actions = `
+      <button class="action-btn approve ${s.copyStatus === 'approved' ? 'active' : ''}" data-action="approve-copy" data-post="${post.id}">Approve copy</button>
+      <button class="action-btn rewrite ${s.copyStatus === 'rewrite' ? 'active' : ''}" data-action="rewrite-copy" data-post="${post.id}">Rewrite copy</button>
+      <button class="action-btn regenerate ${s.imageStatus === 'approved-creative' ? 'active approve' : ''}" data-action="approve-creative" data-post="${post.id}">Approve brief</button>
+      <button class="action-btn regenerate ${s.imageStatus === 'regenerate' ? 'active' : ''}" data-action="new-creative" data-post="${post.id}">Different direction</button>
+    `;
+  }
+
+  /* ── BODY LAYOUT ── */
+  const bodyClass = hasStorySlides ? 'post-body story'
+                  : (hasImage || post.needsCreative || photoComing) ? 'post-body'
+                  : 'post-body full';
+
+  return `
+    <div class="post" data-post-row="${post.id}" data-day="${post.day}" data-platform="${post.platform}">
+      <div class="post-margin">
+        <div class="post-id">${escape(post.id)}</div>
+        <div class="meta-row">${escape(post.time)} · ${escape(post.day.toUpperCase())}</div>
+        <span class="platform-tag ${pSlug}">${escape(post.platform)}</span>
+        ${post.igFormat ? `<span class="format-tag">${escape(post.igFormat)}</span>` : ''}
+        ${assetLabel ? `<span class="asset-tag ${assetClass}">${escape(assetLabel)}</span>` : ''}
+        <div class="meta-row" style="margin-top:6px;">${escape(post.type)}</div>
+      </div>
+      <div class="${bodyClass}">
+        <div class="post-content">
+          <div class="status-ribbon" id="ribbon-${post.id}" style="display:none;"></div>
+          <h3>${escape(post.hook)}</h3>
+          <div class="copy-block" id="copy-${post.id}">${escape(post.copy).replace(/\n\n/g, '<br/><br/>').replace(/\n/g, '<br/>')}</div>
+          <button class="copy-toggle" data-toggle="${post.id}">Read full copy</button>
+          <div class="copy-cta"><strong>CTA</strong> · ${escape(post.cta)}</div>
+          ${post.notes && post.notes !== '—' ? `<div class="notes"><span class="label">Direction</span>${escape(post.notes)}</div>` : ''}
+          <div class="actions">${actions}</div>
+          <div class="comment-row">
+            <textarea data-comment="${post.id}" placeholder="Note for the team — what to change, what to keep, anything else…">${escape(s.comment || '')}</textarea>
+          </div>
+        </div>
+        ${imagePanel}
+      </div>
+    </div>
+  `;
+}
+
+function render() {
+  const main = document.getElementById('main');
+  let html = '';
+
+  DAYS.forEach(day => {
+    const dayPosts = POSTS.filter(p => p.day === day.key);
+    if (dayPosts.length === 0) return;
+
+    html += `
+      <section class="day-section" data-day-section="${day.key}">
+        <div class="day-header">
+          <div>
+            <span class="day-num">${escape(day.num)} · ${escape(day.date)}</span>
+          </div>
+          <div>
+            <h2>${escape(day.title)}${day.accent ? ' <span class="accent">' + escape(day.accent) + '</span>' : ''}</h2>
+            <div class="day-tone">${escape(day.tone)}</div>
+            <div class="day-format">${escape(day.format)}</div>
+          </div>
+        </div>
+        ${dayPosts.map(renderPost).join('')}
+      </section>
+    `;
+  });
+
+  main.innerHTML = html;
+  POSTS.forEach(p => refreshRibbon(p.id));
+  bindEvents();
+  recomputeStats();
+  applyFilters();
+}
+
+function refreshRibbon(id) {
+  const ribbon = document.getElementById('ribbon-' + id);
+  if (!ribbon) return;
+  const post = POSTS.find(p => p.id === id);
+  if (!post) return;
+
+  const status = overallStatus(id, post);
+  ribbon.className = 'status-ribbon ' + status;
+  if (status === 'pending') {
+    ribbon.style.display = 'none';
+  } else {
+    ribbon.style.display = 'block';
+    ribbon.textContent = status === 'approved' ? 'Approved'
+                       : status === 'reshoot'  ? 'New render'
+                       : status === 'rewrite'  ? 'Rewrite'
+                       : status === 'regenerate' ? 'New direction'
+                       : status;
+  }
+}
+
+function recomputeStats() {
+  let approved = 0, reshoot = 0, rewrite = 0, pending = 0;
+  POSTS.forEach(p => {
+    const st = overallStatus(p.id, p);
+    if (st === 'approved') approved++;
+    else if (st === 'reshoot' || st === 'regenerate') reshoot++;
+    else if (st === 'rewrite') rewrite++;
+    else pending++;
+  });
+  document.getElementById('stat-total').textContent     = POSTS.length;
+  document.getElementById('stat-approved').textContent  = approved;
+  document.getElementById('stat-reshoot').textContent   = reshoot;
+  document.getElementById('stat-rewrite').textContent   = rewrite;
+  document.getElementById('stat-pending').textContent   = pending;
+}
+
+/* ──────────── EVENTS ──────────── */
+
+function bindEvents() {
+  document.querySelectorAll('.action-btn[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.dataset.action;
+      const id = btn.dataset.post;
+      const s = getPostState(id);
+
+      if (action === 'approve-copy')     setPostState(id, { copyStatus: s.copyStatus === 'approved' ? 'pending' : 'approved' });
+      if (action === 'rewrite-copy')     setPostState(id, { copyStatus: s.copyStatus === 'rewrite'  ? 'pending' : 'rewrite' });
+      if (action === 'approve-image')    setPostState(id, { imageStatus: s.imageStatus === 'approved' ? 'pending' : 'approved' });
+      if (action === 'new-image')        setPostState(id, { imageStatus: s.imageStatus === 'reshoot-image' ? 'pending' : 'reshoot-image' });
+      if (action === 'approve-creative') setPostState(id, { imageStatus: s.imageStatus === 'approved-creative' ? 'pending' : 'approved-creative' });
+      if (action === 'new-creative')     setPostState(id, { imageStatus: s.imageStatus === 'regenerate' ? 'pending' : 'regenerate' });
+
+      render();
+    });
+  });
+
+  document.querySelectorAll('textarea[data-comment]').forEach(t => {
+    t.addEventListener('input', e => {
+      setPostStateNoRender(e.target.dataset.comment, { comment: e.target.value });
+    });
+  });
+
+  document.querySelectorAll('button[data-toggle]').forEach(b => {
+    b.addEventListener('click', () => {
+      const block = document.getElementById('copy-' + b.dataset.toggle);
+      block.classList.toggle('expanded');
+      b.textContent = block.classList.contains('expanded') ? 'Collapse' : 'Read full copy';
+    });
+  });
+
+  document.querySelectorAll('.carousel-thumb').forEach(t => {
+    t.addEventListener('click', () => {
+      const post = POSTS.find(p => p.id === t.dataset.post);
+      const idx = parseInt(t.dataset.index, 10);
+      const img = post.images[idx];
+      const main = document.getElementById('main-img-' + post.id);
+      const lbl  = document.getElementById('main-img-label-' + post.id);
+      main.src = imgSrc(img.file);
+      lbl.textContent = img.label;
+
+      const strip = t.parentElement;
+      strip.querySelectorAll('.carousel-thumb').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      main.parentElement.dataset.lightbox = imgSrc(img.file);
+    });
+  });
+
+  document.querySelectorAll('.image-frame[data-lightbox]').forEach(f => {
+    f.addEventListener('click', () => openLightbox(f.dataset.lightbox));
+  });
+}
+
+document.querySelectorAll('.chip-group').forEach(group => {
+  const filterKey = group.dataset.filter;
+  group.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      filters[filterKey] = chip.dataset.value;
+      applyFilters();
+    });
+  });
+});
+
+function applyFilters() {
+  document.querySelectorAll('[data-post-row]').forEach(row => {
+    const id = row.dataset.postRow;
+    const post = POSTS.find(p => p.id === id);
+    if (!post) return;
+
+    const status = overallStatus(id, post);
+    let show = true;
+    if (filters.day !== 'all' && post.day !== filters.day) show = false;
+    if (filters.platform !== 'all' && post.platform !== filters.platform) show = false;
+    if (filters.status !== 'all') {
+      if (filters.status === 'approved' && status !== 'approved') show = false;
+      if (filters.status === 'pending'  && status !== 'pending') show = false;
+      if (filters.status === 'reshoot'  && !(status === 'reshoot' || status === 'regenerate')) show = false;
+      if (filters.status === 'rewrite'  && status !== 'rewrite') show = false;
+    }
+    row.classList.toggle('hidden', !show);
+  });
+
+  document.querySelectorAll('.day-section').forEach(sec => {
+    const visiblePosts = sec.querySelectorAll('[data-post-row]:not(.hidden)').length;
+    sec.style.display = visiblePosts === 0 ? 'none' : '';
+  });
+}
+
+/* ──────────── LIGHTBOX ──────────── */
+
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+
+function openLightbox(src) { lbImg.src = src; lb.classList.add('open'); }
+lb.addEventListener('click', () => lb.classList.remove('open'));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+/* ──────────── EXPORT + RESET ──────────── */
+
+document.getElementById('btn-export').addEventListener('click', () => {
+  const rows = POSTS.map(p => {
+    const s = getPostState(p.id);
+    return {
+      id: p.id, day: p.day, time: p.time, platform: p.platform, type: p.type, hook: p.hook,
+      assetStatus: p.assetStatus || (p.textOnly ? 'text-only' : ''),
+      igFormat: p.igFormat || '',
+      status: overallStatus(p.id, p),
+      copyStatus: s.copyStatus || 'pending',
+      imageStatus: s.imageStatus || 'pending',
+      comment: s.comment || '',
+      images: (p.images || []).map(i => i.file).join(' | ')
+    };
+  });
+
+  const headers = ['id','day','time','platform','type','hook','igFormat','assetStatus','status','copyStatus','imageStatus','comment','images'];
+  const csv = [
+    headers.join(','),
+    ...rows.map(r => headers.map(h => `"${String(r[h] == null ? '' : r[h]).replace(/"/g, '""')}"`).join(','))
+  ].join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'blind-spot-launch-approvals-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (!confirm('Reset every approval and clear all comments?')) return;
+  state = {};
+  saveState(state);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
