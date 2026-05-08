@@ -844,7 +844,8 @@
     </div>
     <div class="filter-actions">
       <button class="btn btn-ghost" id="btn-reset">Reset all</button>
-      <button class="btn" id="btn-export">Export approvals</button>
+      <button class="btn btn-ghost" id="btn-copy-feedback">Copy feedback (paste to Claude)</button>
+      <button class="btn" id="btn-export">Export CSV</button>
     </div>
   </div>
 </div>
@@ -1687,6 +1688,43 @@ document.getElementById('btn-reset').addEventListener('click', () => {
   state = {};
   saveState(state);
   render();
+});
+
+document.getElementById('btn-copy-feedback').addEventListener('click', async () => {
+  const fb = {
+    campaign: 'The Blind Spot · Launch planning · all 23 posts',
+    exportedAt: new Date().toISOString(),
+    posts: POSTS.map(p => {
+      const s = getPostState(p.id);
+      return {
+        id: p.id,
+        day: p.day,
+        platform: p.platform,
+        hook: p.hook,
+        status: overallStatus(p.id, p),
+        copyStatus: s.copyStatus || 'pending',
+        imageStatus: s.imageStatus || 'pending',
+        comment: (s.comment || '').trim()
+      };
+    })
+  };
+  fb.summary = {
+    approved: fb.posts.filter(p => p.status === 'approved').map(p => p.id),
+    needsChange: fb.posts.filter(p => p.status === 'reshoot' || p.status === 'regenerate').map(p => p.id),
+    rewrite: fb.posts.filter(p => p.status === 'rewrite').map(p => p.id),
+    pending: fb.posts.filter(p => p.status === 'pending').map(p => p.id),
+    commentsCount: fb.posts.filter(p => p.comment).length
+  };
+  const text = JSON.stringify(fb, null, 2);
+  try { await navigator.clipboard.writeText(text); }
+  catch (e) {
+    const t = document.createElement('textarea'); t.value = text;
+    document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t);
+  }
+  const btn = document.getElementById('btn-copy-feedback');
+  const orig = btn.textContent;
+  btn.textContent = 'Copied ✓ paste in chat';
+  setTimeout(() => { btn.textContent = orig; }, 2400);
 });
 
 render();
